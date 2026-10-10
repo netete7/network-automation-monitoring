@@ -16,6 +16,7 @@ The exporter connects to RouterOS over SSH, reads interface state and per-interf
 - `exporter.py` — Prometheus exporter for device reachability, interface state, running-interface count, and traffic rates.
 - `prometheus.yml`, `alert_rules.yml` — scrape job and device/interface-down Prometheus alert rules.
 - `test_interface_parser.py` — small example demonstrating parsing of representative RouterOS interface output.
+- `docs/evidence/` — Grafana dashboard screenshots supplied for this project.
 
 ## Requirements
 
@@ -88,6 +89,14 @@ The supplied Prometheus rules cover device-down and interface-down conditions. T
 ## Testing and evidence
 
 The parser example uses representative RouterOS output and is useful as a manual reference. The prior conversation also recorded a live `/metrics` check showing running interfaces. It did not establish from the available files a repeatable end-to-end alert test artifact. Avoid disabling the SSH management interface to test; use a safe lab interface or a separate simulated metric source.
+
+## Dashboard screenshots
+
+The screenshots below show the Grafana dashboard with the device reported as up, `ether1` reported as up, and RX/TX traffic plotted. The second screenshot also shows an RX Errors panel displaying `0`. However, the current exporter does not publish the RX error-rate metric, so that panel value is not verified by the checked-in exporter and should not be presented as a measured zero.
+
+![Grafana dashboard showing device status and interface traffic](docs/evidence/grafana-dashboard-device-status.png)
+
+![Grafana dashboard showing interface status, traffic, and RX Errors panel](docs/evidence/grafana-dashboard-interface-metrics.png)
 
 ## Limitations
 
