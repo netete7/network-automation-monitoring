@@ -1,0 +1,20 @@
+groups:
+  - name: mikrotik-network-alerts
+    rules:
+      - alert: NetworkDeviceDown
+        expr: network_device_up == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "MikroTik device is unreachable"
+          description: "The exporter cannot connect to the configured RouterOS device. Check reachability, SSH, and the monitoring account."
+
+      - alert: NetworkInterfaceDown
+        expr: network_interface_up == 0
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "A monitored network interface is down"
+          description: "Interface {{ $labels.interface }} on the MikroTik device is not reporting the running flag."
