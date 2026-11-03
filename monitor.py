@@ -61,7 +61,7 @@ for device in devices:
             print("Assessment: DEVICE UNREACHABLE")
 
 
-        # print(result.stdout) prints out the raw input
+        #print(result.stdout) prints out the raw input 
         latency = result.stdout.split("time=")[1].split(" ")[0]
         print("Latency:", latency, "ms")
 
@@ -73,32 +73,13 @@ for device in devices:
         packet_loss = result.stdout.split("% packet loss")[0].split()[-1]
         print("Packet Loss:", packet_loss, "%")
 
-        #
+        # 
         if float(packet_loss) == 0:
             print("Packet Loss Status: GOOD")
         else:
             print("Packet Loss Status: DETECTED")
 
-        #
-        # if float(packet_loss) > 0:
-        #     issues_detected += 1
-        #     print("Assessment: CONNECTION ISSUE")
-        # elif float(latency) > latency_threshold:
-        #     issues_detected += 1
-        #     print("Assessment: HIGH LATENCY")
-        # else:
-        #     print("Assessment: HEALTHY")
-        # the code for the earlier stage of v2
-
-        # if float(packet_loss) > packet_loss_threshold:
-        #     issues_detected += 1
-        #     print("Assessment: HIGH PACKET LOSS")
-        # elif float(latency) > latency_threshold:
-        #      issues_detected += 1
-        #      print("Assessment: HIGH LATENCY")
-        # else:
-        #      print("Assessment: HEALTHY")
-        # also a more complex version
+        # 
         if float(packet_loss) > packet_loss_threshold and float(latency) > latency_threshold:
             issues_detected += 1
             print("Assessment: DEGRADED CONNECTION")
@@ -111,13 +92,13 @@ for device in devices:
         else:
             print("Assessment: HEALTHY")
 
-        #
+        # 
     except subprocess.TimeoutExpired:
         offline_devices += 1
         issues_detected += 1
         print("Status: OFFLINE")
         print("Assessment: CONNECTION TIMEOUT")
-
+    
     print()
 
 print("=========================")

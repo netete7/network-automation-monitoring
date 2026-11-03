@@ -9,3 +9,23 @@ __pycache__/
 .DS_Store
 *.backup
 *.rsc
+email_cases.sqlite3*
+
+# Local evidence, cases, secrets and checkpoints must not be published.
+.rollback/
+project_snapshot*.txt
+.streamlit/secrets.toml
+*.sqlite
+*.sqlite3
+*.sqlite3-*
+*.db
+*.db-*
+*.pem
+*.key
+id_rsa*
+id_ed25519*
+.pytest_cache/
+.coverage
+htmlcov/
+reports/
+exports/
